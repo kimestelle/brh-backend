@@ -21,4 +21,8 @@ class Item{
     getPinataCid() {
         return this.pinataCid;
     }
+
+    compare(otherItem) {
+        return 0;
+    }
 } 
