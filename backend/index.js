@@ -3,15 +3,16 @@ const app = express();
 const port = 3000;
 const db = require('./services/firebaseAdmin')
 
-const { calculateCompatibility } = require('./utils/Compare');
+const calculateCompatibility = require('./utils/Compare');
 
 const Item = require('./models/itemModel.js');
 
 app.get('/', (req, res) => {
   const item1 = new Item(100, 100, 100, 0.5, 0.5, 111, 'street');
   const item2 = new Item(100, 100, 100, 0.5, 0.5, 111, 'street');
-  res.sendStatus(calculateCompatibility(item1, item2))
-  res.sendStatus('Hello World!');
+  const compatibilityScore = calculateCompatibility(item1, item2);
+
+  res.status(200).send({ score: compatibilityScore });
 });
 
 app.post('/', async(req, res) => {
