@@ -1,0 +1,104 @@
+[debug] [2024-10-05T14:15:40.855Z] ----------------------------------------------------------------------
+[debug] [2024-10-05T14:15:40.857Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\iames\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2024-10-05T14:15:40.857Z] CLI Version:   13.20.2
+[debug] [2024-10-05T14:15:40.858Z] Platform:      win32
+[debug] [2024-10-05T14:15:40.858Z] Node Version:  v20.18.0
+[debug] [2024-10-05T14:15:40.858Z] Time:          Sat Oct 05 2024 10:15:40 GMT-0400 (Eastern Daylight Time)
+[debug] [2024-10-05T14:15:40.858Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-10-05T14:15:40.863Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-10-05T14:15:40.864Z] > authorizing via signed-in user (iamestellekim@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\iames\projects\brh-backend\backend
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[info] i  If you want to create a project in a Google Cloud organization or folder, please use "firebase projects:create" instead, and return to this command when you've created the project. 
+[debug] [2024-10-05T14:16:02.469Z] Checked if tokens are valid: true, expires at: 1728140852736
+[debug] [2024-10-05T14:16:02.469Z] Checked if tokens are valid: true, expires at: 1728140852736
+[debug] [2024-10-05T14:16:02.471Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects [none]
+[debug] [2024-10-05T14:16:02.472Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"projectId":"brh","name":"brh"}
+[debug] [2024-10-05T14:16:02.835Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects 400
+[debug] [2024-10-05T14:16:02.836Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"error":{"code":400,"message":"Request contains an invalid argument.","status":"INVALID_ARGUMENT","details":[{"@type":"type.googleapis.com/google.rpc.BadRequest","fieldViolations":[{"field":"project_id","description":"project_id must be at least 6 characters long"},{"field":"display_name","description":"project display name must be at least 4 characters"}]},{"@type":"type.googleapis.com/google.rpc.Help","links":[{"url":"https://cloud.google.com/resource-manager/reference/rest/v1/projects"}]}]}}
+[debug] [2024-10-05T14:16:02.927Z] FirebaseError: HTTP Error: 400, Request contains an invalid argument.
+    at responseToError (C:\Users\iames\AppData\Roaming\npm\node_modules\firebase-tools\lib\responseToError.js:49:12)
+    at RetryOperation._fn (C:\Users\iames\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:312:77)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[error] 
+[error] Error: Failed to create project. See firebase-debug.log for more info.
+[debug] [2024-10-05T14:16:33.923Z] ----------------------------------------------------------------------
+[debug] [2024-10-05T14:16:33.926Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\iames\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2024-10-05T14:16:33.926Z] CLI Version:   13.20.2
+[debug] [2024-10-05T14:16:33.926Z] Platform:      win32
+[debug] [2024-10-05T14:16:33.926Z] Node Version:  v20.18.0
+[debug] [2024-10-05T14:16:33.926Z] Time:          Sat Oct 05 2024 10:16:33 GMT-0400 (Eastern Daylight Time)
+[debug] [2024-10-05T14:16:33.927Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-10-05T14:16:33.932Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-10-05T14:16:33.933Z] > authorizing via signed-in user (iamestellekim@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\iames\projects\brh-backend\backend
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[info] i  If you want to create a project in a Google Cloud organization or folder, please use "firebase projects:create" instead, and return to this command when you've created the project. 
+[debug] [2024-10-05T14:16:46.738Z] Checked if tokens are valid: true, expires at: 1728140852736
+[debug] [2024-10-05T14:16:46.738Z] Checked if tokens are valid: true, expires at: 1728140852736
+[debug] [2024-10-05T14:16:46.740Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects [none]
+[debug] [2024-10-05T14:16:46.740Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"projectId":"brh","name":"brh"}
+[debug] [2024-10-05T14:16:47.064Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects 400
+[debug] [2024-10-05T14:16:47.064Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"error":{"code":400,"message":"Request contains an invalid argument.","status":"INVALID_ARGUMENT","details":[{"@type":"type.googleapis.com/google.rpc.BadRequest","fieldViolations":[{"field":"project_id","description":"project_id must be at least 6 characters long"},{"field":"display_name","description":"project display name must be at least 4 characters"}]},{"@type":"type.googleapis.com/google.rpc.Help","links":[{"url":"https://cloud.google.com/resource-manager/reference/rest/v1/projects"}]}]}}
+[debug] [2024-10-05T14:16:47.147Z] FirebaseError: HTTP Error: 400, Request contains an invalid argument.
+    at responseToError (C:\Users\iames\AppData\Roaming\npm\node_modules\firebase-tools\lib\responseToError.js:49:12)
+    at RetryOperation._fn (C:\Users\iames\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:312:77)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[error] 
+[error] Error: Failed to create project. See firebase-debug.log for more info.
+[debug] [2024-10-05T14:18:57.725Z] ----------------------------------------------------------------------
+[debug] [2024-10-05T14:18:57.728Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\iames\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js projects:create
+[debug] [2024-10-05T14:18:57.728Z] CLI Version:   13.20.2
+[debug] [2024-10-05T14:18:57.729Z] Platform:      win32
+[debug] [2024-10-05T14:18:57.729Z] Node Version:  v20.18.0
+[debug] [2024-10-05T14:18:57.729Z] Time:          Sat Oct 05 2024 10:18:57 GMT-0400 (Eastern Daylight Time)
+[debug] [2024-10-05T14:18:57.729Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-10-05T14:18:57.734Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-10-05T14:18:57.735Z] > authorizing via signed-in user (iamestellekim@gmail.com)
+[debug] [2024-10-05T14:19:07.259Z] Checked if tokens are valid: true, expires at: 1728140852736
+[debug] [2024-10-05T14:19:07.259Z] Checked if tokens are valid: true, expires at: 1728140852736
+[debug] [2024-10-05T14:19:07.261Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects [none]
+[debug] [2024-10-05T14:19:07.261Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"projectId":"brh-backend","name":"brh-backend"}
+[debug] [2024-10-05T14:19:07.616Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects 409
+[debug] [2024-10-05T14:19:07.617Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"error":{"code":409,"message":"Requested entity already exists","status":"ALREADY_EXISTS"}}
+[debug] [2024-10-05T14:19:07.708Z] FirebaseError: HTTP Error: 409, Requested entity already exists
+    at responseToError (C:\Users\iames\AppData\Roaming\npm\node_modules\firebase-tools\lib\responseToError.js:49:12)
+    at RetryOperation._fn (C:\Users\iames\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:312:77)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[error] 
+[error] Error: Failed to create project because there is already a project with ID brh-backend. Please try again with a unique project ID.
