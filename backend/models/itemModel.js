@@ -1,6 +1,8 @@
 class Item{
-    constructor(hsl, formality, weather, pinataCid, style) {
-        this.hsl = hsl;
+    constructor(h, s, l, formality, weather, pinataCid, style) {
+        this.h = h; // hue
+        this.s = s; // saturation
+        this.l = l; // lightness
         this.formality = formality;
         this.weather = weather;
         this.pinataCid = pinataCid;
@@ -9,7 +11,7 @@ class Item{
     }
 
     getHsl() {
-        return this.hsl;
+        return [this.h, this.s, this.l];
     }
 
     getFormality() {

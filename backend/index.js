@@ -3,15 +3,16 @@ const app = express();
 const port = 3000;
 const db = require('./services/firebaseAdmin')
 
-const compare = require('./utils/Compare').default;
+const calculateCompatibility = require('./utils/Compare');
 
-const Item = require('./models/itemModel.js').default;
+const Item = require('./models/itemModel.js');
 
 app.get('/', (req, res) => {
-  const item1 = new Item([100, 100, 100], 0.5, 0.5, 'street');
-  const item2 = new Item([100, 100, 100], 0.5, 0.5, 'street');
-  res.sendStatus(compare.calculateCompatibility(item1, item2))
-  res.sendStatus('Hello World!');
+  const item1 = new Item(100, 100, 100, 0.5, 0.5, 111, 'street');
+  const item2 = new Item(100, 100, 100, 0.5, 0.5, 111, 'street');
+  const compatibilityScore = calculateCompatibility(item1, item2);
+
+  res.status(200).send({ score: compatibilityScore });
 });
 
 app.post('/', async(req, res) => {
@@ -21,6 +22,33 @@ app.post('/', async(req, res) => {
     res.status(500).sendStatus(error.message);
   }
 })
+
+//gemini image processing
+app.post('/generate-content', async (req, res) => {
+  const { prompt, imageBase64 } = req.body; // Expect prompt and image in base64 format
+  
+  if (!prompt || !imageBase64) {
+    return res.status(400).send('Missing prompt or image');
+  }
+
+  try {
+    // Call the function from geminiImage.js
+    const response = await generateImageContent(prompt, imageBase64);
+    
+    res.status(200).json({ result: response });
+  } catch (error) {
+    console.error('Error generating content:', error);
+    res.status(500).send('Error generating content');
+  }
+});
+
+app.post('/', async (req, res) => {
+  try {
+    res.send('posted');
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+});
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
