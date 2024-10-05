@@ -1,5 +1,5 @@
 class Item{
-    constructor(type, h, s, l, formality, weather, pinataCid, style) {
+    constructor(type, h, s, l, formality, weather, pinataCid, style, name) {
     //code type as integers (0: tops, 1: outers, 2: bottoms, 4: onepieces)
         this.type = type;
         this.h = h; // hue
@@ -11,6 +11,7 @@ class Item{
     //either integer or string identifier for the style
         this.style = style;
         this.compatibility = 0;
+        this.name = name;
     }
 
     //getters
@@ -38,10 +39,14 @@ class Item{
         return this.compatibility;
     }
 
+    getName() {
+        return this.name;
+    }
+
     //setters
     setComp(score) {
         this.compatibility = score;
-    } 
+    }
 }
 
 module.exports = Item;
