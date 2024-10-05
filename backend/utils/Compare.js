@@ -29,7 +29,7 @@ function compareHsl(item1, item2) {
 
     let style = item1.getStyle();
     //if weather is warm + formality is low, focus on contrasting
-    let theory = switchStyle(item1.getStyle());
+    let theory = switchStyle(item1);
 
     switch (theory) {
         case 'complimentary':
@@ -43,38 +43,38 @@ function compareHsl(item1, item2) {
     }
 }
 
-function switchStyle(style) {
-    switch (style) {
+function switchStyle(item1) {
+    switch (item1.getStyle()) {
         // add cases based on style, weather, and formality
                 case 'preppy':
-                    if (item1.getWeather < 0.5) {
+                    if (item1.getWeather() < 0.5) {
                         return 'adjacent';
                     } else {
                         return 'monochrome';
                     }
                 case 'street':
-                    if (item1.getWeather < 0.5) {
+                    if (item1.getWeather() < 0.5) {
                         return 'adjacent';
                     } else {
                         return 'monochrome';
                     }
         
                 case 'vintage':
-                    if (item1.getWeather < 0.5) {
+                    if (item1.getWeather() < 0.5) {
                         return 'adjacent';
                     } else {
                         return 'monochrome';
                     }
         
                 case 'minimal':
-                    if (item1.getWeather < 0.5) {
+                    if (item1.getWeather() < 0.5) {
                         return 'adjacent';
                     } else {
                         return 'monochrome';
                     }
         
                 case 'fancy':
-                    if (item1.getWeather < 0.5) {
+                    if (item1.getWeather() < 0.5) {
                         return 'adjacent';
                     } else {
                         return 'monochrome';
@@ -136,4 +136,4 @@ function getMonochromeScore(hsl1, hsl2) {
             0.05 * Math.abs(hsl1[2] - hsl2[2])) / 255;
 }
 
-module.exports = calculateCompatibility;
+module.exports = calculateCompatibility();
