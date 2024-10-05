@@ -33,6 +33,10 @@ class Item{
     getStyle() {
         return this.style;
     }
+    
+    getComp() {
+        return this.compatibility;
+    }
 
     //setters
     setComp(score) {

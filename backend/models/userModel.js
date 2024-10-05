@@ -39,23 +39,23 @@ class User {
             return [-1];
         }
 
-        let allItems = this.closet[type];
+        let items = this.closet[type];
         let topTen = [];
 
-        for (let i = 0; i < allItems.length; i++) {
-            let compItem = allItems[i];
-            let compatibilityScore = calculateCompatibility(item, compItem);
+        for (let i = 0; i < items.length; i++) {
+            let compItem = items[i];
+            compItem.setComp(calculateCompatibility(item, compItem));
 
-            topTen.push({ item: compItem, score: compatibilityScore });
+            topTen.push(compItem);
 
-            topTen.sort((a, b) => a.score - b.score);
+            topTen.sort((a, b) => a.getComp() - b.getComp());
 
             if (topTen.length > 10) {
                 topTen.pop();
             }
         }
 
-        return topTen.map(entry => entry.item);
+        return topTen;
     }
 }
 
