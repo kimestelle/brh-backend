@@ -4,6 +4,8 @@ class Item{
         this.formality = formality;
         this.weather = weather;
         this.pinataCid = pinataCid;
+    //either integer or string identifier for the style
+        this.style = style;
     }
 
     getHsl() {
@@ -17,12 +19,8 @@ class Item{
     getWeather() {
         return this.weather;
     }
-
-    getPinataCid() {
-        return this.pinataCid;
-    }
-
-    compare(otherItem) {
-        return 0;
+    
+    getStyle() {
+        return this.style;
     }
 } 
