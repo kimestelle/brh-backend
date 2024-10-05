@@ -2,13 +2,21 @@ const express = require('express');
 const app = express();
 const port = 3000;
 const db = require('./services/firebaseAdmin')
+const { analyzeImage } = require('./services/geminiImage');
 
-const calculateCompatibility = require('./utils/Compare');
+const multer = require('multer');
+const fs = require('fs');
 
+
+// const calculateCompatibility = require('./utils/Compare');
+
+const upload = multer({ dest: 'uploads/' });
 const Item = require('./models/itemModel.js');
 const User = require('./models/userModel.js');
 const Pin = require('./services/pinata.js');
 
+app.use(express.json({ limit: '10mb' })); 
+app.use(express.static('public'));
 app.get('/', async (req, res) => {
   const newUser = new User('john_doe', 'john@example.com');
 
@@ -76,32 +84,35 @@ app.post('/', async(req, res) => {
   }
 })
 
-//gemini image processing
-app.post('/generate-content', async (req, res) => {
-  const { prompt, imageBase64 } = req.body; // Expect prompt and image in base64 format
-  
-  if (!prompt || !imageBase64) {
-    return res.status(400).send('Missing prompt or image');
+app.get('/analyze-image', (req, res) => {
+  res.status(200).send('Image analysis endpoint is running.');
+});
+
+// Gemini image processing
+app.post('/analyze-image', upload.single('image'), async (req, res) => {
+  if (!req.file) {
+    return res.status(400).send('No image file uploaded.');
   }
 
   try {
-    // Call the function from geminiImage.js
-    const response = await generateImageContent(prompt, imageBase64);
-    
-    res.status(200).json({ result: response });
+    const imagePath = req.file.path; // Path to uploaded image
+
+    // Analyze the image
+    const responseText = await analyzeImage(imagePath);
+
+    res.status(200).json({ description: responseText });
   } catch (error) {
-    console.error('Error generating content:', error);
-    res.status(500).send('Error generating content');
+    console.error('Error analyzing image:', error);
+    res.status(500).send('Error analyzing image');
+  } finally {
+    // Clean up: remove the uploaded file after processing
+    fs.unlink(req.file.path, (err) => {
+      if (err) console.error('Error deleting file:', err);
+    });
   }
 });
 
-app.post('/', async (req, res) => {
-  try {
-    res.send('posted');
-  } catch (error) {
-    res.status(500).send(error.message);
-  }
-});
+
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);

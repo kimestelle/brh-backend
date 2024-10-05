@@ -1,22 +1,32 @@
-const client = require('../middlewares/geminiClient');
+const fs = require('fs');
+const model = require('../middlewares/geminiClient');
 
-async function generateImageContent(prompt, imageBase64) {
+// Function to describe an image
+async function analyzeImage(imagePath) {
   try {
-    const response = await client.generateContent([
-      prompt,
-      {
-        inlineData: {
-          data: imageBase64,
-          mimeType: 'image/png',
-        },
-      },
-    ]);
+    // Read the image file and convert to base64
+    const imageBytes = fs.readFileSync(imagePath);
+    const imageBase64 = imageBytes.toString('base64');
 
-    return response;
+    // Send the image to the Gemini API
+    const response = await model.generateContent({
+      prompt: {
+        text: 'Describe the image.', // Prompt asking for description
+      },
+      images: [
+        {
+          mimeType: 'image/jpeg', // Ensure the MIME type is correct based on your image type
+          data: imageBase64,
+        },
+      ],
+    });
+
+    // If the response is structured as expected, return the text description
+    return response.prompt.text || 'No description found';
   } catch (error) {
-    console.error('Error generating image content:', error);
-    throw new Error('Failed to generate image content');
+    console.error('Error analyzing image:', error);
+    throw new Error('Failed to analyze image');
   }
 }
 
-module.exports = { generateImageContent };
+module.exports = { analyzeImage };

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Upload</title>
+</head>
+<body>
+    <h1>Upload an Image for Analysis</h1>
+    <form id="uploadForm">
+        <input type="file" id="imageInput" accept="image/*" required>
+        <button type="submit">Upload</button>
+    </form>
+
+    <script>
+        document.getElementById('uploadForm').addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            const fileInput = document.getElementById('imageInput');
+            const file = fileInput.files[0];
+
+            if (file) {
+                const formData = new FormData();
+                formData.append('image', file); // Append the file to form data
+
+                try {
+                    const response = await fetch('http://localhost:3000/analyze-image', {
+                        method: 'POST',
+                        body: formData, // Send the form data
+                    });
+
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok: ' + response.statusText);
+                    }
+
+                    const result = await response.json();
+                    console.log(result); // Log the response from the server
+                } catch (error) {
+                    console.error('Error:', error); // Log any errors
+                }
+            }
+        });
+    </script>
+</body>
+</html>
