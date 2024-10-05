@@ -1,8 +1,10 @@
-import { initializeApp } from 'firebase/app';
+const admin = require('firebase-admin');
+const serviceAccount = require('./brh-server-firebase-adminsdk-a5b5u-9b70e03647.json');
 
-// TODO: Replace the following with your app's Firebase project configuration
-const firebaseConfig = {
-  //...
-};
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+});
 
-const app = initializeApp(firebaseConfig);
+const db = admin.firestore();
+
+module.exports = db;
