@@ -136,6 +136,4 @@ function getMonochromeScore(hsl1, hsl2) {
             0.05 * Math.abs(hsl1[2] - hsl2[2])) / 255;
 }
 
-export default {
-    calculateCompatibility
-}
+module.exports = calculateCompatibility;
