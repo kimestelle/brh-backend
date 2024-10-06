@@ -48,36 +48,36 @@ function switchStyle(item1) {
         // add cases based on style, weather, and formality
                 case 'preppy':
                     if (item1.getWeather() < 0.5) {
-                        return 'adjacent';
-                    } else {
                         return 'monochrome';
+                    } else {
+                        return 'adjacent';
                     }
                 case 'street':
                     if (item1.getWeather() < 0.5) {
-                        return 'adjacent';
+                        return 'tricolor';
                     } else {
-                        return 'monochrome';
+                        return 'adjacent';
                     }
         
                 case 'vintage':
                     if (item1.getWeather() < 0.5) {
                         return 'adjacent';
                     } else {
-                        return 'monochrome';
+                        return 'complementary';
                     }
         
                 case 'minimal':
                     if (item1.getWeather() < 0.5) {
-                        return 'adjacent';
+                        return 'monochrome';
                     } else {
                         return 'monochrome';
                     }
         
                 case 'fancy':
                     if (item1.getWeather() < 0.5) {
-                        return 'adjacent';
+                        return 'tricolor';
                     } else {
-                        return 'monochrome';
+                        return 'complementary';
                     }
         
             }
@@ -87,52 +87,52 @@ function switchStyle(item1) {
 ///kinda bs rn and the magnitude of scores is probably different across the cases but will adjust later - just want this to return something
 
 // weights (h: 0.4, s: 0.5, l: 0.1)
-// wait my modulo and normalizing back to scale of 255 in the next line might be bs
+// wait my modulo stuff might be bs
 // getting difference between actual complementary color and hsl2
 function getComplementaryScore(hsl1, hsl2) {
-    let angle1 = hsl1[0] * 360 / 255;
-    let angle2 = hsl2[0] * 360 / 255;
+    let angle1 = hsl1[0] * 360;
+    let angle2 = hsl2[0] * 360;
 
-    let complementaryDifference = Math.abs((angle1 + 180) % 360 - angle2) * 255 / 360;
+    let complementaryDifference = Math.abs((angle1 + 180) % 360 - angle2) / 360;
     return (0.4 * complementaryDifference + 
             0.5 * Math.abs(hsl1[1] - hsl2[1]) +
-            0.1 * Math.abs(hsl1[2] - hsl2[2])) / 255;
+            0.1 * Math.abs(hsl1[2] - hsl2[2])) ;
 }   
 
 // 30° to 45° is the optimum range, but anywhere between 20° and 60° is acceptable
 // measure of adjacency: difference between abs(angle1 - angle2) and optimal number (37.5)
 // weights (h: 0.4, s: 0.5, l: 0.1)
 function getAdjacencyScore(hsl1, hsl2) {
-    let angle1 = hsl1[0] * 360 / 255;
-    let angle2 = hsl2[0] * 360 / 255;
+    let angle1 = hsl1[0] * 360;
+    let angle2 = hsl2[0] * 360;
 
-    let adjacencyDifference = Math.abs(Math.abs(angle1 - angle2) - 37.5) * 255 / 360;
+    let adjacencyDifference = Math.abs(Math.abs(angle1 - angle2) - 37.5) / 360;
     return (0.4 * adjacencyDifference +
             0.5 * Math.abs(hsl1[1] - hsl2[1]) +
-            0.1 * Math.abs(hsl1[2] - hsl2[2])) / 255;
+            0.1 * Math.abs(hsl1[2] - hsl2[2]));
 }
 
 // adjacency but convert angle1 to complementary angle
 // weights (h: 0.4, s: 0.5, l: 0.1)
 function getTricolorScore(hsl1, hsl2) {
-    let angle1 = hsl1[0] * 360 / 255;
-    let angle2 = hsl2[0] * 360 / 255;
+    let angle1 = hsl1[0] * 360;
+    let angle2 = hsl2[0] * 360;
 
-    let tricolorDifference = Math.abs(Math.abs((angle1 + 180) % 360 - angle2) - 37.5) * 255 / 360;
+    let tricolorDifference = Math.abs(Math.abs((angle1 + 180) % 360 - angle2) - 37.5) / 360;
     return (0.4 * tricolorDifference +
             0.5 * Math.abs(hsl1[1] - hsl2[1]) +
-            0.1 * Math.abs(hsl1[2] - hsl2[2])) / 255;
+            0.1 * Math.abs(hsl1[2] - hsl2[2]));
 }
 
 // hue as close as possible, saturation somewhat important, lightness doesnt matter
 // weights (h: 0.8, s: 0.15, l: 0.05)
 function getMonochromeScore(hsl1, hsl2) {
-    let angle1 = hsl1[0] * 360 / 255;
-    let angle2 = hsl2[0] * 360 / 255;
+    let angle1 = hsl1[0] * 360 ;
+    let angle2 = hsl2[0] * 360 ;
 
-    let monochromeDifference = Math.abs(angle1 - angle2);
+    let monochromeDifference = Math.abs(angle1 - angle2) / 360;
     return (0.8 * monochromeDifference +
             0.15 * Math.abs(hsl1[1] - hsl2[1]) +
-            0.05 * Math.abs(hsl1[2] - hsl2[2])) / 255;
+            0.05 * Math.abs(hsl1[2] - hsl2[2])) ;
 }
 module.exports = calculateCompatibility;
