@@ -1,5 +1,5 @@
 const fs = require('fs');
-const model = require('../middlewares/geminiClient');
+// const model = require('../middlewares/geminiClient');
 
 // Function to describe an image
 async function analyzeImage(imagePath) {
