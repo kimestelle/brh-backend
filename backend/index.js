@@ -1,7 +1,6 @@
 const express = require('express');
 const app = express();
 const port = 2000;
-const db = require('./services/firebaseAdmin')
 const { analyzeImage } = require('./services/geminiImage');
 
 const multer = require('multer');
@@ -18,8 +17,71 @@ app.use(express.json({ limit: '10mb' }));
 
 const newUser = new User('john_doe', 'john@example.com');
 
+// app.get('/', async (req, res) => {
+//   const top1 = new Item('top', 0.10, 0.15, 0.18, 0.6, 0.5, 130, 'preppy', "top1");
+//   array = newUser.getRankings(top1, 2);
+//   res.status(200).send({ array });
+// });
+
 app.get('/', async (req, res) => {
-  res.status(200).send('started program');
+  const newUser = new User('red bear', 'bear@example.com');
+
+  // Add 1 top item
+  const top1 = new Item('top', 0.10, 0.15, 0.18, 0.6, 0.5, 130, 'preppy', "top1");
+  newUser.addItem(top1);
+
+  // Add 10 bottom items
+  const bottom1 = new Item('bottom', 0.12, 0.18, 0.21, 0.6, 0.7, 90, 'preppy', "bottom1");
+  const bottom2 = new Item('bottom', 0.25, 0.20, 0.15, 0.8, 0.4, 75, 'fancy', "bottom2");
+  const bottom3 = new Item('bottom', 0.90, 0.13, 0.16, 0.3, 0.6, 105, 'street', "bottom3");
+  const bottom4 = new Item('bottom', 0.20, 0.17, 0.14, 0.5, 0.5, 60, 'vintage', "bottom4");
+  const bottom5 = new Item('bottom', 0.60, 0.10, 0.12, 0.4, 0.3, 95, 'minimal', "bottom5");
+  const bottom6 = new Item('bottom', 0.22, 0.14, 0.17, 0.7, 0.5, 85, 'fancy', "bottom6");
+  const bottom7 = new Item('bottom', 0.18, 0.16, 0.19, 0.6, 0.7, 80, 'preppy', "bottom7");
+  const bottom8 = new Item('bottom', 0.11, 0.12, 0.13, 0.4, 0.6, 110, 'street', "bottom8");
+  const bottom9 = new Item('bottom', 0.24, 0.15, 0.16, 0.5, 0.5, 65, 'vintage', "bottom9");
+  const bottom10 = new Item('bottom', 0.50, 0.80, 0.90, 0.3, 0.4, 70, 'minimal', "bottom10");
+
+  // Add all bottom items to the user's closet
+  newUser.addItem(bottom1);
+  newUser.addItem(bottom2);
+  newUser.addItem(bottom3);
+  newUser.addItem(bottom4);
+  newUser.addItem(bottom5);
+  newUser.addItem(bottom6);
+  newUser.addItem(bottom7);
+  newUser.addItem(bottom8);
+  newUser.addItem(bottom9);
+  newUser.addItem(bottom10);
+
+  // You can log or further manipulate the user and their items as needed
+  console.log(newUser);
+
+  // // const pinRes = [
+  // //   Pin.pinItem(top1),
+  // //   Pin.pinItem(bottom1),
+  // //   Pin.pinItem(bottom2),
+  // //   Pin.pinItem(bottom3),
+  // //   Pin.pinItem(bottom4),
+  // //   Pin.pinItem(bottom5),
+  // //   Pin.pinItem(bottom6),
+  // //   Pin.pinItem(bottom7),
+  // //   Pin.pinItem(bottom8),
+  // //   Pin.pinItem(bottom9),
+  // //   Pin.pinItem(bottom10),
+  // // ];
+  array = newUser.getRankings(top1, 'bottom');
+
+  // console.log("------------------------");
+
+  // let listRes = await Pin.listPinnedItems();
+  // console.log(listRes);
+  // console.log("------------------------");
+  // console.log(listRes[0].getName());
+
+  const listedPhotos = Pin.listPhotos();
+
+  res.status(200).send({ array});
 });
 
 app.get('/getMatch', async (req, res) => {

@@ -1,5 +1,6 @@
 // array corresponding to the image files in pinata. 
 // ideally, gemini would process the items first then hand the image to pinata // input the other info into this array but we make do lol
+const Item = require('../models/itemModel.js');
 
 const arrayOfClothes = [
     // (type, h, s, l, formality, weather, pinataCid, style, name) 
@@ -42,7 +43,7 @@ const arrayOfClothes = [
     ),
 ]
 
-modules.export(arrayOfClothes)
+module.exports = {arrayOfClothes};
 
 // [
 //     {

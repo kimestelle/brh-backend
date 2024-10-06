@@ -94,7 +94,7 @@ function getComplementaryScore(hsl1, hsl2) {
     let angle2 = hsl2[0] * 360;
 
     let complementaryDifference = Math.abs((angle1 + 180) % 360 - angle2) / 360;
-    return (0.4 * complementaryDifference + 
+    return (0.4 * complementaryDirafference + 
             0.5 * Math.abs(hsl1[1] - hsl2[1]) +
             0.1 * Math.abs(hsl1[2] - hsl2[2])) ;
 }   
